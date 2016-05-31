@@ -1,0 +1,8 @@
+h1 {
+    background-color: grey;
+    font-family: serif, monospace;
+}
+
+.label {
+    margin: 10px;
+}
