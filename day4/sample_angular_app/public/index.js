@@ -9,7 +9,7 @@ var RegApp = angular.module("RegApp", []);
             console.info("register click");
             console.info("username: %s", ctrl.username);
             console.info("email: %s", ctrl.email);
-            console.info("gender: %s", ctrl.email);
+            console.info("gender: %s", ctrl.gender);
         };
     };
     RegApp.controller("RegCtrl", [RegCtrl]);
