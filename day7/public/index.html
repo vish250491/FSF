@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="TodoApp">
+<head>
+	<meta charset="UTF-8">
+	<title>TODO list</title>
+
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+
+	<script src="index.js"></script>
+
+</head>
+<body ng-controller="TodoCtrl as ctrl">
+
+	<div class="container">
+
+		<h1>TODO List</h1>
+
+		<form name="todoForm" novalidate class="form-inline" ng-submit="ctrl.addTodo()">
+			<div class="form-group">
+				<label for="task">Task:</label>
+				<input type="text" id="task" name="task" required class="form-control" size="30" 
+						ng-model="ctrl.newTodo.task">
+			</div>
+			<div class="form-group">
+				<label for="dueDate">Due:</label>
+				<input id="dueDate" type="date" name="dueDate" required class="form-control"
+						ng-model="ctrl.newTodo.dueDate">
+			</div>
+			<div class="form-group">
+				<label for="priority">Priority:</label>
+				<input id="priority" type="number" name="priority" class="form-control" min="1" required
+						ng-model="ctrl.newTodo.priority">
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-success" ng-disabled="todoForm.$invalid">
+					<i class="fa fa-plus-square-o"></i>
+					Add
+				</button>
+			</div>
+		</form>
+
+		<h3>TODOs</h3>
+
+		<div class="list-group">
+			<a class="list-group-item" href="#" ng-repeat="t in ctrl.todos">
+				<h4 class="list-group-item-heading">{{ t.task }}</h4>
+				<p class="list-group-item-text">
+					Due date: {{ t.dueDate }}, Priority: {{ t.priority }}
+				</p>
+			</a>
+		</div>
+
+		<button class="btn btn-info pull-right" ng-disabled="ctrl.todos.length <= 0" ng-click="ctrl.save()">
+			<i class="fa fa-save"></i>
+			Save
+		</button>
+
+	</div>
+
+	
+</body>
+</html>
