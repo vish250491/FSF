@@ -8,14 +8,6 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="index.js"></script>
-    <style>
-        input.ng-invalid.ng-dirty {
-            background-color: pink;
-        }
-        input.ng-valid.ng-dirty {
-            background-color: lightgreen;
-        }
-    </style>
 </head>
 <body  ng-controller="RegCtrl as ctrl">
 <div style="padding: 30px">
@@ -24,28 +16,28 @@
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username"
-               class="form-control" ng-model="ctrl.username" required>
+               class="form-control" ng-model="ctrl.username">
     </div>
     <div class="form-group">
         <label for="email">Email:</label>
         <input type="email" id="email" name="email"
-               class="form-control" ng-model="ctrl.email" required>
+               class="form-control" ng-model="ctrl.email">
     </div>
     <div class="form-group">
         <label for="gender">Gender:</label>
         <div class="radio">
             <label class="radio-inline">
                 <input type="radio" name="gender"
-                       ng-model="ctrl.gender" value="male" required>Male
+                       ng-model="ctrl.gender" value="male">Male
             </label>
             <label class="radio-inline">
                 <input type="radio" name="gender"
-                       ng-model="ctrl.gender" value="female" required>Female
+                       ng-model="ctrl.gender" value="female">Female
             </label>
         </div>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn-success form-control" ng-disabled="regForm.username.$invalid || regForm.email.$invalid || regForm.gender.$invalid">Register
+        <button type="submit" class="btn-success form-control">Register
             </button>
     </div>
 </form>
