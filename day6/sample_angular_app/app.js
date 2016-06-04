@@ -13,8 +13,7 @@ app.get("/register", function(req, res, next) {
     var username = req.query.username;
     var email = req.query.email;
     var gender = req.query.gender;
-    console.info("hihi")
-    res.redirect("thankyou.html");
+    
     res.status(200).end()
 });
 
