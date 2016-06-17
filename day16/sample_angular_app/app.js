@@ -1,6 +1,3 @@
-/**
- * Created by issv203 on 16/6/2016.
- */
 //Load express
 var express = require("express");
 //Create an instance of express application
@@ -21,9 +18,9 @@ var mysql = require("mysql");
 var pool = mysql.createPool({
     host: "localhost",
     port: 3306,
-    user: "edmond",
-    password: "1111",
-    database: "image",
+    user: "edmond", // db user
+    password: "1111", // password
+    database: "image", // db name
     connectionLimit: 4
 });
 
@@ -60,18 +57,20 @@ app.get("/download/:filename", function(req, res) {
             res.status(400).send(JSON.stringify(err));
             return;
         }
-        connection.query("select * from img_storage where bid = ?",
-            [ req.params.filename ],
+        connection.query("select data, img_type from img_storage where bid = ?", [ req.params.filename ],
             function(err, results) {
                 connection.release();
                 if (err) {
                     res.status(400).send(JSON.stringify(err));
                     return;
                 }
-                if (results.length)
-                    res.json(results[0]);
-                else
+                if (results.length) {
+                    console.log("ok")
+                    res.status(200).type(results[0].img_type).send(results[0].data);
+                }
+                else {
                     res.status(404).end("image " + req.params.filename + " is not found");
+                }
             });
     });
 });

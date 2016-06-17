@@ -36,5 +36,11 @@
         </div>
     </form>
 </div>
+<div class="form-group" style="margin:30px">
+    <button ng-click="ctrl.download()"  class="btn btn-primary">View an image.</button>
+</div>
+<div class="form-group" style="margin:30px;">
+    <object style="border:none" ng-attr-data="{{ctrl.content}}" type="image/png" style="width:500px;height:500px;"></object>
+</div>
 </body>
 </html>
