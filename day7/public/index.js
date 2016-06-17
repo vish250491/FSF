@@ -1,6 +1,6 @@
 (function() {
 	var createTodo = function() {
-		return ({ task: "", dueDate: "", priority: "" });
+		return ({ task: '', dueDate: '', priority: '' });
 	};
 	var TodoApp = angular.module("TodoApp", []);
 	var TodoCtrl = function($http) {
@@ -17,7 +17,7 @@
 
 		ctrl.save = function() {
 			$http.get("/save", { 
-				params: { todos: ctrl.todos }
+				params: { todos: JSON.stringify(ctrl.todos) }
 			}).then(function() {
 				ctrl.todos = [];
 			}).catch(function() {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="UploadApp">
+<head>
+    <title>Angular App Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</head>
+<body ng-controller="UploadCtrl as ctrl">
+<div style="padding: 30px">
+    <h2>Upload File</h2>
+    <form name="UploadForm" novalidate ng-submit="ctrl.upload()" autocomplete="off">
+        <div class="form-group">
+            <input id="file" type="file" ng-model="ctrl.imgFile" ngf-select accept="image/*">
+        </div>
+        <div class="form-group" style="margin-bottom:10px">
+            <img ngf-thumbnail="ctrl.imgFile" width="70px">
+        </div>
+        <div class="form-group">
+            <textarea ng-model="ctrl.comment" rows="10" cols="30"> </textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Upload</button>
+        </div>
+        <div class="alert" role="alert" alert-dismissable ng-show="ctrl.status.code"
+             ng-class="{'alert-success': ctrl.status.code == 202, 'alert-danger': ctrl.status.code == 400 }">
+            <button class="close" data-dismiss="alert">
+                <!-- data dismiss removes the element. This alert won't show up again before refreshing -->
+                &times;
+            </button>
+            {{ ctrl.status.message }}
+        </div>
+    </form>
+</div>
+</body>
+</html>

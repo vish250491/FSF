@@ -4,6 +4,7 @@ var express = require("express");
 var app = express();
 
 app.get("/save", function(req, res) {
+	console.log(req.query.todos);
 	var todos = JSON.parse(req.query.todos);
 	console.info(">>> todos: %s", todos);
 	console.info(">>> typeof todos: %s", typeof todos);
