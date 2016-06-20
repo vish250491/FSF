@@ -1,23 +1,23 @@
-(function() {
-	var QueryApp = angular.module("QueryApp", []);
+angular
+    .module("QueryApp", [])
+    .controller("queryCtrl", queryCtrl);
 
-	var QueryCtrl = function($http) {
-		var ctrl = this;
-		ctrl.empNo = 0;
-		ctrl.result = null;
-		ctrl.search = function() {
-			$http.get("/api/employee/" + ctrl.empNo)
-				.then(function(result) {
-					ctrl.result = result.data;
-					console.info("result: %s", JSON.stringify(ctrl.result));
-				})
-				.catch(function(error) {
-					// error.status = status code
-					// error.data = message from the application
-					console.info(">> error: %s", JSON.stringify(error));
-				});
-		};
-	};
+queryCtrl.$inject = ["$http"];
 
-	QueryApp.controller("QueryCtrl", ["$http", QueryCtrl]);
-})();
+function queryCtrl($http) {
+    var vm = this;
+    vm.empNo = 0;
+    vm.result = null;
+    vm.search = function () {
+        $http.get("/api/employee/" + vm.empNo)
+            .then(function (result) {
+                vm.result = result.data;
+                console.info("result: %s", JSON.stringify(vm.result));
+            })
+            .catch(function (error) {
+                // error.status = status code
+                // error.data = message from the application
+                console.info(">> error: %s", JSON.stringify(error));
+            });
+    };
+};

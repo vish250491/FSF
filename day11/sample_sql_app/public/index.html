@@ -1,72 +1,75 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="QueryApp">
 <head>
-	<meta charset="UTF-8">
-	<title></title>
 
-	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <meta charset="UTF-8">
+    <title></title>
 
-	<script src="/bower_components/jquery/dist/jquery.js"></script>
-	<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 
-	<script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 
-	<script src="/index.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+
+    <script src="/index.js"></script>
+
 </head>
-<body ng-controller="QueryCtrl as ctrl">
 
-	<div class="container">
+<body ng-controller="queryCtrl as ctrl">
 
-		<h1>Employees Query</h1>
+<div class="container">
 
-		<form name="queryForm" novalidate class="form-inline" ng-submit="ctrl.search()">
-			<div class="form-group">
-				<label for="emp_no">Employee number:</label>
-				<input id="emp_no" class="form-control" type="number"  name="empNo"
-					placeholder="Enter employee number to search" ng-model="ctrl.empNo">
-			</div>
-			<div class="form-group">
-				<button type="submit" class="btn btn-info form-control" ng-disabled="queryForm.$invalid">
-					Search
-				</button>
-			</div>
-		</form>
+    <h1>Employees Query</h1>
 
-		<table class="table table-striped" ng-show="ctrl.result">
-			<thead>
-				<tr>
-					<th>Field name</th>
-					<th>Value</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Employee number</td>
-					<td>{{ ctrl.result.emp_no }}</td>
-				</tr>
-				<tr>
-					<td>First name</td>
-					<td>{{ ctrl.result.first_name }}</td>
-				</tr>
-				<tr>
-					<td>Last name</td>
-					<td>{{ ctrl.result.last_name }}</td>
-				</tr>
-				<tr>
-					<td>Gender</td>
-					<td>{{ ctrl.result.gender }}</td>
-				</tr>
-				<tr>
-					<td>Birth date</td>
-					<td>{{ ctrl.result.birth_date | date:"yyyy MM dd" }}</td>
-				</tr>
-				<tr>
-					<td>Hire date</td>
-					<td>{{ ctrl.result.hire_date | date:"yyyy MM dd" }}</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	
+    <form name="queryForm" novalidate class="form-inline" ng-submit="ctrl.search()">
+        <div class="form-group">
+            <label for="emp_no">Employee number:</label>
+            <input id="emp_no" class="form-control" type="number" name="empNo"
+                   placeholder="Enter employee number to search" ng-model="ctrl.empNo">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-info form-control" ng-disabled="queryForm.$invalid">
+                Search
+            </button>
+        </div>
+    </form>
+
+    <table class="table table-striped" ng-show="ctrl.result">
+        <thead>
+        <tr>
+            <th>Field name</th>
+            <th>Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Employee number</td>
+            <td>{{ ctrl.result.emp_no }}</td>
+        </tr>
+        <tr>
+            <td>First name</td>
+            <td>{{ ctrl.result.first_name }}</td>
+        </tr>
+        <tr>
+            <td>Last name</td>
+            <td>{{ ctrl.result.last_name }}</td>
+        </tr>
+        <tr>
+            <td>Gender</td>
+            <td>{{ ctrl.result.gender }}</td>
+        </tr>
+        <tr>
+            <td>Birth date</td>
+            <td>{{ ctrl.result.birth_date | date:"yyyy MM dd" }}</td>
+        </tr>
+        <tr>
+            <td>Hire date</td>
+            <td>{{ ctrl.result.hire_date | date:"yyyy MM dd" }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

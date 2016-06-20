@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="queryApp">
 <head>
+
     <meta charset="UTF-8">
     <title>Query App</title>
 
@@ -11,13 +12,19 @@
     <script src="bower_components/angular/angular.js"></script>
 
     <script src="index.js"></script>
+
 </head>
+
 <body ng-controller="queryCtrl as ctrl">
-<form name="queryForm" novalidate
-      ng-submit="ctrl.search()">
+
+<form name="queryForm" novalidate ng-submit="ctrl.search()">
+
     <input type=”number” required ng-model="ctrl.empNo">
+
     <button type="submit" ng-disabled="queryForm.$invalid">Search</button>
+
 </form>
+
 <table class="table table-striped" ng-show="ctrl.result">
     <thead>
     <tr>
