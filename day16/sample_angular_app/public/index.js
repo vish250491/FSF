@@ -2,9 +2,9 @@ angular
     .module("UploadApp", ["ngFileUpload"])
     .controller("UploadCtrl", UploadCtrl);
 
-UploadCtrl.$inject = ["$http", "Upload"];
+UploadCtrl.$inject = ["dbService"];
 
-function UploadCtrl($http, Upload) {
+function UploadCtrl(dbService) {
     var vm = this;
     vm.imgFile = null;
     vm.comment = "";
@@ -15,15 +15,14 @@ function UploadCtrl($http, Upload) {
     vm.content = []; // variable that holds filenames returned from server
 
     vm.upload = function () {
-        Upload.upload({
-            url: '/upload',
-            data: {
+        dbService.upload(
+            {
                 "img-file": vm.imgFile,
                 "comment": vm.comment,
             }
-        }).then(function (resp) {
+        ).then(function (resp) {
             vm.fileurl = resp.data.bid;
-            vm.status.message = "The image " + resp.data.bid + " is saved successfully.";
+            vm.status.message = "The image is saved successfully with id : " + resp.data.bid;
             vm.status.code = 202;
         }).catch(function (err) {
             vm.status.message = "Fail to save the image."
@@ -32,10 +31,14 @@ function UploadCtrl($http, Upload) {
     };
 
     vm.download = function () {
-        $http.get("/download")
-             .then(function (resp) {
-                 vm.content = resp.data;
-             });
+        dbService
+            .download()
+            .then(function (resp) {
+                vm.content = resp.data;
+            }).catch(function (err) {
+                vm.status.message = "Fail to download the images."
+                vm.status.code = 400;
+        });
     }
 };
 
