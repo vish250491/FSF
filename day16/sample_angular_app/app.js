@@ -34,11 +34,13 @@ const sql = "insert into img_storage (bid, comment, upload_date, data, img_type)
 app.use(express.static(__dirname + "/public"));
 
 app.post("/upload", multipart.single("img-file"), function (req, res) {
+    var name = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 15); // random primary key, could be done in db
+
     fs.readFile(req.file.path, function (err, data) {
         pool.getConnection(function (err, conn) {
             conn.query(sql,
                 [
-                    Math.random().toString().slice(0, 15), // random primary key, could be done in db
+                    name,
                     req.body.comment,
                     new Date(),
                     data,
@@ -52,7 +54,7 @@ app.post("/upload", multipart.single("img-file"), function (req, res) {
                         return;
                     }
                     fs.unlinkSync(req.file.path); // delete tmp files after saved to db
-                    res.status(202).json({bid: req.body.name.slice(0, 15)});
+                    res.status(202).json({bid: name});
                 });
         });
     })
