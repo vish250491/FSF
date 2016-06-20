@@ -1,29 +1,32 @@
-(function() {
-	var createTodo = function() {
-		return ({ task: '', dueDate: '', priority: '' });
-	};
-	var TodoApp = angular.module("TodoApp", []);
-	var TodoCtrl = function($http) {
+angular
+    .module("TodoApp", [])
+    .controller("TodoCtrl", TodoCtrl);
 
-		var ctrl = this;
+function TodoCtrl($http) {
 
-		ctrl.todos = [];
-		ctrl.newTodo = createTodo();
+    var vm = this;
 
-		ctrl.addTodo = function() {
-			ctrl.todos.push(ctrl.newTodo);
-			ctrl.newTodo = createTodo();
-		};
+    vm.todos = [];
+    vm.newTodo = createTodo();
 
-		ctrl.save = function() {
-			$http.get("/save", { 
-				params: { todos: JSON.stringify(ctrl.todos) }
-			}).then(function() {
-				ctrl.todos = [];
-			}).catch(function() {
-			});
-		};
-	};
+    vm.addTodo = function () {
+        vm.todos.push(vm.newTodo);
+        vm.newTodo = createTodo();
+    };
 
-	TodoApp.controller("TodoCtrl", ["$http", TodoCtrl]);
-})();
+    vm.save = function () {
+        $http.get("/save", {
+            params: {todos: JSON.stringify(vm.todos)}
+        }).then(function () {
+            vm.todos = [];
+        }).catch(function () {
+        });
+    };
+};
+
+
+function createTodo() {
+    return ({task: '', dueDate: '', priority: ''});
+};
+
+

@@ -1,80 +1,121 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="RegApp"> <!-- define which angular app this app uses -->
-<head>  <!-- startup init all the required js script & css -->
+
+<head>
+
+    <meta charset="UTF-8">
+
     <title>Angular App Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
+
     <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="index.js"></script>
-    <style> <!-- styling the error message -->
-        .red {
-            color: red;
-        }
-    </style>
+    <script src="bower_components/angular/angular.js"></script>
+
+    <script src="index.js"></script>
+
 </head>
+
 <body ng-controller="RegCtrl as ctrl">  <!-- attach a controller to the page -->
+
 <div style="padding: 30px">
+
     <h2>Registration</h2>
-    <form name="regForm" ng-submit="ctrl.register()" novalidate autocomplete="off"> <!-- define the angular submission to the index.js controller's function -->
+
+    <form name="regForm" ng-submit="ctrl.register()" novalidate autocomplete="off">
+
+        <!-- define the angular submission to the index.js controller's function -->
         <div class="form-group">
+
             <label for="username">Username:</label>
+
             <input type="text" id="username" name="username"
                    class="form-control" ng-model="ctrl.username" required> <!-- this field is required-->
-        <span class="help-block" ng-show="regForm.username.$error.required"> <!-- define th error message for the username field -->
-            Please enter a username.</span>
-        <span class="help-block red" ng-show="!regForm.username.$error.required&&regForm.username.$invalid">
-            This username is invalid.</span>
+
+            <!-- define th error message for the username field -->
+            <span class="help-block" ng-show="regForm.username.$error.required"> Please enter a username.</span>
+            <span class="help-block red" ng-show="!regForm.username.$error.required&&regForm.username.$invalid">This username is invalid.</span>
+
         </div>
+
         <div class="form-group">
+
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-control" ng-model="ctrl.email" required>  <!-- this field is required /mandatory -->
-        <span class="help-block" ng-show="regForm.email.$error.required"> <!-- erorr message for email -->
-            Please enter an email.</span>
-        <span class="help-block  red" ng-show="regForm.email.$invalid&&!regForm.email.$error.required">
-            This email is invalid.</span>
+
+            <input type="email" id="email" name="email"
+                   class="form-control" ng-model="ctrl.email" required> <!-- this field is required /mandatory -->
+
+            <span class="help-block" ng-show="regForm.email.$error.required">
+                Please enter an email.</span>
+            <span class="help-block  red" ng-show="regForm.email.$invalid&&!regForm.email.$error.required">
+                This email is invalid.</span>
+
         </div>
+
         <div class="form-group">
+
             <label for="gender">Gender:</label>
+
             <div class="radio">
-                <label class="radio-inline"> <!-- mandatory field -->
+
+                <label class="radio-inline">
                     <input type="radio" name="gender"
                            ng-model="ctrl.gender" value="male" required>Male
                 </label>
+
                 <label class="radio-inline">
                     <input type="radio" name="gender"
                            ng-model="ctrl.gender" value="female" required>Female
                 </label>
-            <span class="help-block" ng-show="regForm.gender.$invalid"> <!-- erorr message for gender field -->
-            Please choose a gender.</span>
+
+            <span class="help-block" ng-show="regForm.gender.$invalid">
+                Please choose a gender.</span>
+
             </div>
+
         </div>
+
         <div class="form-group">
+
             <label for="password">Password:</label>
+
             <input type="password" id="password" name="password"
-                   class="form-control" ng-model="ctrl.password" ng-minlength="8" required> <!-- password field is min length is 8 and mandatory -->
-        <span class="help-block" ng-show="regForm.password.$error.required">
-            Please enter a password.</span>
-        <span class="help-block  red" ng-show="regForm.password.$invalid&&!regForm.password.$error.required"> <!-- error message for password field -->
-            This password is too short.</span>
+                   class="form-control" ng-model="ctrl.password" ng-minlength="8" required>
+
+            <span class="help-block" ng-show="regForm.password.$error.required">
+                Please enter a password.</span>
+
+            <span class="help-block  red" ng-show="regForm.password.$invalid&&!regForm.password.$error.required">
+                This password is too short.</span>
+
         </div>
+
         <div class="form-group">
-            <button type="submit" class="btn btn-primary"
-                    ng-disabled="regForm.$invalid">
+
+            <button type="submit" class="btn btn-primary" ng-disabled="regForm.$invalid">
                 Register
             </button>
+
         </div>
+
     </form>
 
     < !-- css message for error and information -->
-    <div class="alert" role="alert" alert-dismissable  ng-show="ctrl.status.code" ng-class="{'alert-success': ctrl.status.code == 202, 'alert-danger': ctrl.status.code == 400 }">
+    <div class="alert" role="alert" alert-dismissable ng-show="ctrl.status.code"
+         ng-class="{'alert-success': ctrl.status.code == 202, 'alert-danger': ctrl.status.code == 400 }">
+
         <button class="close" data-dismiss="alert">
-        <!-- data dismiss removes the element. This alert won't show up again before refreshing -->
+            <!-- data dismiss removes the element. This alert won't show up again before refreshing -->
             &times;
         </button>
+
         {{ ctrl.status.message }}
+
     </div>
+
 </div>
+
 </body>
+
 </html>
