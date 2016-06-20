@@ -9,11 +9,11 @@ var app = express();
 
 app.use(express.static(__dirname + "/public"));
 
-app.get("/register", function(req, res, next) {
+app.post("/register", function(req, res, next) {
     var username = req.query.username;
     var email = req.query.email;
     var gender = req.query.gender;
-    
+    console.log("form data received")
     res.status(200).end()
 });
 
