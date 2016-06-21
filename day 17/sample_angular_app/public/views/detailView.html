@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+    <div class="panel-heading">{{ detailCtrl.film.title }}</div>
+    <div class="panel-body">{{ detailCtrl.film.description }}</div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Release</td>
+                <td>{{detailCtrl.film.release_year}}</td>
+            </tr>
+            <tr>
+                <td>Rating</td>
+                <td>{{detailCtrl.film.rating}}</td>
+            </tr>
+            <tr>
+                <td>Features</td>
+                <td>{{detailCtrl.film. special_features}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button ng-click="detailCtrl.back()">Back</button>
