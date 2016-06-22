@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ShoppingCartApp">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularApp Example</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+
+    <script src="shoppingcart.js"></script>
+    <script src="service.js"></script>
+    <script src="controller.js"></script>
+
+</head>
+
+<body style="margin:30px" ng-controller="cartCtrl as ctrl">
+<h3>Shopping Cart</h3>
+<form ng-submit="ctrl.addToCart()">
+
+    <div class="form-group">
+
+        <label for="name">Item</label>
+
+        <input class="form-control" type="text" ng-model="ctrl.newItem.name">
+
+    </div>
+
+    <div class="form-group">
+
+        <label for="quantity">Quantity</label>
+
+        <input class="form-control" type="number" ng-model="ctrl.newItem.quantity">
+
+    </div>
+
+    <div class="form-group btn-group">
+
+        <button type="submit">Add</button>
+
+        <button type="button" ng-click="ctrl.checkout()">
+            Checkout
+        </button>
+
+        <button type="button" ng-click="ctrl.refreshCart()">
+            Refresh
+        </button>
+
+    </div>
+
+</form>
+
+<div class="alert" role="alert" alert-dismissable ng-show="ctrl.status.code"
+     ng-class="{'alert-success': ctrl.status.code == 202, 'alert-danger': ctrl.status.code == 400 }">
+
+    <button class="close" ng-click="ctrl.status.code = 0">
+        &times;
+    </button>
+
+    {{ ctrl.status.message }}
+
+</div>
+
+<ul class="list-group">
+
+    <li class="list-group-item" ng-repeat="i in ctrl.cart">
+
+        {{ i.name }} &times; {{ i.quantity }}
+
+    </li>
+
+</ul>
+
+</body>
+</html>

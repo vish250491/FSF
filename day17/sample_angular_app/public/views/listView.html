@@ -1,0 +1,8 @@
+<div>
+    <div class=”list-group”>
+        <button type="button" class="list-group-item"
+                ng-repeat="f in listCtrl.films" ng-click="listCtrl.getDetails(f.film_id)">
+            {{ f.title }} ({{f.release_year}})
+        </button>
+    </div>
+</div>
