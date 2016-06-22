@@ -2,104 +2,137 @@
 <!-- define which angular app this app uses -->
 <html lang="en" ng-app="RegApp">
 <head>
+
     <title>Angular App Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+
     <script type="text/javascript" src="index.js"></script>
+
 </head>
 <!-- attach a controller to the page -->
 <body ng-controller="RegCtrl as ctrl">
 
-    <div class="container">
-        <h2>Please register</h2>
+<div class="container">
+    <h2>Please register</h2>
 
-        <form name="regForm" novalidate ng-submit="ctrl.register()" autocomplete="off">
+    <form name="regForm" novalidate ng-submit="ctrl.register()" autocomplete="off">
 
-            <!--USERNAME-->
-            <!-- define the angular submission to the index.js controller's function -->
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <!-- this field is required /mandatory -->
-                <input type="text" id="username" name="username"
-                       class="form-control" ng-model="ctrl.username" required>
+        <!--USERNAME-->
+        <!-- define the angular submission to the index.js controller's function -->
+        <div class="form-group">
 
-                <!-- define th error message for the username field -->
-                <div class="help-block" ng-show="regForm.username.$error.required">
-                    <p>Please enter a username.</p>
-                </div>
-                <div class="help-block" ng-show="!regForm.username.$error.required&&regForm.username.$invalid">
-                    <p class="text-danger">username is invalid.</p>
-                </div>
+            <label for="username">Username:</label>
+
+            <!-- this field is required /mandatory -->
+            <input type="text" id="username" name="username"
+                   class="form-control" ng-model="ctrl.username" required>
+
+            <!-- define th error message for the username field -->
+            <div class="help-block" ng-show="regForm.username.$error.required">
+                <p>Please enter a username.</p>
             </div>
 
-            <!--EMAIL-->
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"
-                       class="form-control" ng-model="ctrl.email" required>
-
-                <div class="help-block" ng-show="regForm.email.$error.required">
-                    <p>Please enter an email.</p>
-                </div>
-
-                <div class="help-block" ng-show="regForm.email.$invalid&&!regForm.email.$error.required">
-                    <p class="text-danger">This email is invalid.</p>
-                </div>
+            <div class="help-block" ng-show="!regForm.username.$error.required&&regForm.username.$invalid">
+                <p class="text-danger">username is invalid.</p>
             </div>
 
-            <!--GENDER-->
-            <div class="form-group">
-                <label>Gender:</label>
+        </div>
 
-                <div class="radio">
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" ng-model="ctrl.gender" value="male" required>
-                        Male
-                    </label>
+        <!--EMAIL-->
+        <div class="form-group">
 
-                    <label class="radio-inline">
-                        <input type="radio" name="gender" ng-model="ctrl.gender" value="female" required>
-                        Female
-                    </label>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"
+                   class="form-control" ng-model="ctrl.email" required>
 
-                    <div class="help-block" ng-show="regForm.gender.$invalid">
-                        <p>Please choose a gender.</p>
-                    </div>
+            <div class="help-block" ng-show="regForm.email.$error.required">
+                <p>Please enter an email.</p>
+            </div>
+
+            <div class="help-block" ng-show="regForm.email.$invalid&&!regForm.email.$error.required">
+                <p class="text-danger">This email is invalid.</p>
+            </div>
+
+        </div>
+
+        <!--GENDER-->
+        <div class="form-group">
+
+            <label>Gender:</label>
+
+            <div class="radio">
+
+                <label class="radio-inline">
+                    <input type="radio" name="gender" ng-model="ctrl.gender" value="male" required>
+                    Male
+                </label>
+
+                <label class="radio-inline">
+                    <input type="radio" name="gender" ng-model="ctrl.gender" value="female" required>
+                    Female
+                </label>
+
+                <div class="help-block" ng-show="regForm.gender.$invalid">
+                    <p>Please choose a gender.</p>
                 </div>
+
             </div>
 
-            <!--PASSWORD-->
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password"
-                       class="form-control" ng-model="ctrl.password" ng-minlength="8" required>
+        </div>
 
-                <div class="help-block" ng-show="regForm.password.$error.required">
-                    <p>Please enter a password.</p>
-                </div>
-                <div class="help-block" ng-show="regForm.password.$invalid&&!regForm.password.$error.required">
-                    <p class="text-danger">This password is too short.</p>
-                </div>
+        <!--PASSWORD-->
+        <div class="form-group">
+
+            <label for="password">Password:</label>
+
+            <input type="password" id="password" name="password"
+                   class="form-control" ng-model="ctrl.password" ng-minlength="8" required>
+
+            <div class="help-block" ng-show="regForm.password.$error.required">
+
+                <p>Please enter a password.</p>
+
             </div>
 
-            <!--SUBMIT-->
-            <div class="form-group">
-                <button type="submit" class="btn-success form-control" ng-disabled="regForm.$invalid">
-                    Register
-                </button>
+            <div class="help-block" ng-show="regForm.password.$invalid&&!regForm.password.$error.required">
+
+                <p class="text-danger">This password is too short.</p>
+
             </div>
 
-            <!-- css message for error and information -->
-            <div class="alert" role="alert" alert-dismissable ng-show="ctrl.status.code"
-                 ng-class="{'alert-success': ctrl.status.code == 202, 'alert-danger': ctrl.status.code == 400 }">
-                <!-- data dismiss removes the element. This alert won't show up again before refreshing -->
-                <button class="close" data-dismiss="alert">&times;</button>
-                {{ ctrl.status.message }}
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <!--SUBMIT-->
+        <div class="form-group">
+
+            <button type="submit" class="btn-success form-control" ng-disabled="regForm.$invalid">
+
+                Register
+
+            </button>
+
+        </div>
+
+        <!-- css message for error and information -->
+        <div class="alert" role="alert" alert-dismissable ng-show="ctrl.status.code"
+             ng-class="{'alert-success': ctrl.status.code == 202, 'alert-danger': ctrl.status.code == 400 }">
+
+            <!-- data dismiss removes the element. This alert won't show up again before refreshing -->
+            <button class="close" data-dismiss="alert">&times;</button>
+
+            {{ ctrl.status.message }}
+
+        </div>
+
+    </form>
+
+</div>
+
 </body>
 </html>
