@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="TodoApp">
 <head>
+
     <meta charset="UTF-8">
     <title>TODO list</title>
 
@@ -8,9 +9,15 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
 
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-
     <script src="index.js"></script>
+
+    <style>
+        li .done-true {
+            text-decoration: line-through;
+        }
+    </style>
 
 </head>
 
@@ -18,7 +25,7 @@
 
 <div class="container">
 
-    <h1>TODO List</h1>
+    <h1>TODO App</h1>
 
     <form name="todoForm" novalidate class="form-inline" ng-submit="ctrl.addTodo()">
 
@@ -37,7 +44,6 @@
 
             <input id="dueDate" type="date" name="dueDate" required class="form-control"
                    ng-model="ctrl.newTodo.dueDate">
-
         </div>
 
         <div class="form-group">
@@ -62,30 +68,21 @@
 
     </form>
 
-    <h3>TODOs</h3>
+    <h3>TODOs - {{ ctrl.todos.length }}</h3>
 
     <div class="list-group">
 
-        <a class="list-group-item" href="#" ng-repeat="t in ctrl.todos">
+        <ul class="list-group" ng-repeat="t in ctrl.todos">
 
-            <h4 class="list-group-item-heading">{{ t.task }}</h4>
+            <li class="list-group-item"><input type="checkbox" ng-model="t.done">&nbsp;&nbsp;
 
-            <p class="list-group-item-text">
+                <span class="done-{{t.done}}"><b>{{ t.task }}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due date: {{ t.dueDate | date}}, Priority: {{ t.priority }}</span>
 
-                Due date: {{ t.dueDate }}, Priority: {{ t.priority }}
+            </li>
 
-            </p>
-
-        </a>
+        </ul>
 
     </div>
-
-    <button class="btn btn-info pull-right" ng-disabled="ctrl.todos.length <= 0" ng-click="ctrl.save()">
-
-        <i class="fa fa-save"></i>
-        Save
-
-    </button>
 
 </div>
 
