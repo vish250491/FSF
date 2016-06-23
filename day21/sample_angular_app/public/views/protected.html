@@ -1,0 +1,19 @@
+<div>
+
+<button type="button" ng-click="protectedCtrl.logout()">
+    Logout
+</button>
+
+<div class="list-group">
+
+    <div class="list-group-item" ng-repeat="f in protectedCtrl.films">
+
+        <h4>{{ f.title }}</h4>
+
+        <p>{{ f.description }}</p>
+
+    </div>
+
+</div>
+
+</div>
