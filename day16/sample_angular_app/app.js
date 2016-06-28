@@ -77,13 +77,13 @@ app.get("/download", function (req, res) {
                     var listOfImages = [];
                     results.forEach(function (item, index) { //Use forEach for async purpose
                         fs.open("public/download/" + index + ".png", 'w', 0666, function (err, file) {
-                            if (err) {
-                                res.status(400).send(JSON.stringify(err));
+                            if (err) {                          
+								console.log("ERROR: Opening file " + index); // TODO: better error handling
                                 return;
                             }
                             fs.writeFile("public/download/" + index + ".png", item.data, 'binary', function (err) {
                                 if (err) {
-                                    res.status(400).send(JSON.stringify(err));
+                                    console.log("ERROR: Writing file " + index);
                                     return;
                                 }
                                 listOfImages.push("download/" + index + ".png");
