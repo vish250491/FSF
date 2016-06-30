@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="RegApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Sample Angular App</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script type="text/javascript" src="bower_components/angular-http-auth/src/http-auth-interceptor.js"></script>
+
+    <script type="text/javascript" src="app/app.module.js"></script>
+    <script type="text/javascript" src="app/app.config.js"></script>
+    <script type="text/javascript" src="app/app.controller.js"></script>
+
+    <script type="text/javascript" src="app/login/login.module.js"></script>
+    <script type="text/javascript" src="app/login/login.controller.js"></script>
+
+    <script type="text/javascript" src="app/protected/protected.module.js"></script>
+    <script type="text/javascript" src="app/protected/protected.service.js"></script>
+    <script type="text/javascript" src="app/protected/protected.controller.js"></script>
+
+
+
+</head>
+
+<body ng-controller="mainCtrl as ctrl">
+
+    <div ui-view></div>
+
+</body>
+</html>
