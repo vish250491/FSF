@@ -1,5 +1,5 @@
-var RegApp = angular.module("RegApp", []);
 (function() {
+	var RegApp = angular.module("RegApp", []);
     var RegCtrl = function() {
         var ctrl = this;
         ctrl.username = "";
